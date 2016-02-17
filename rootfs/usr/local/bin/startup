@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Setting file descriptor limit
+ulimit -n 4096
+
+# Create working directories if not exists
+mkdir -p /rtorrent/downloads
+mkdir -p /rtorrent/watch
+mkdir -p /rtorrent/.session
+mkdir -p /rtorrent/rutorrent
+mkdir -p /rtorrent/rutorrent/torrents
+
+# Change permission to ruTorrent's webserver user
+chown -R lighttpd /rtorrent
+
+# Run supervisor
+exec s6-svscan -t 0 /service

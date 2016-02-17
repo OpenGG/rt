@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Checking the lock
+if [ -f /rtorrent/.session/rtorrent.lock ]; then
+  # Removing the lock
+  rm -f /rtorrent/.session/rtorrent.lock
+fi
+
+# rtorrent check
+running=`ps | grep rtorrent$ | wc -l`
+
+if [ $running -le 2 ]; then
+  # Turn to rTorrent
+	dtach -n /tmp/rtorrentd.dtach rtorrent
+fi
