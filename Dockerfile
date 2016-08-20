@@ -3,7 +3,7 @@ FROM alpine
 MAINTAINER Egor Danko <qwertyone@gmail.com>
 
 # Install required packages
-RUN apk --no-cache add rtorrent dtach s6 lighttpd php-fpm php-cli php-json tar
+RUN apk --no-cache add rtorrent dtach s6 lighttpd php5-fpm php5-cli php5-json tar
 
 # Enable php-fpm in lighttpd
 RUN sed -i "s/#   include \"mod_fastcgi_fpm.conf\"/   include \"mod_fastcgi_fpm.conf\"/g" /etc/lighttpd/lighttpd.conf
